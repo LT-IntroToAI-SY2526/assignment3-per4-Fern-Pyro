@@ -1,5 +1,5 @@
 # Important variables:
-#     movie_db: list of 4-tuples (imported from movies.py)
+#     movie_db: list of 4-tuples (imported from movies.py) - tuples are fixed lists (cannot be changed -> inmutable)
 #     pa_list: list of pattern-action pairs (queries)
 #       pattern - strings with % and _ (not consecutive)
 #       action  - return list of strings
@@ -19,7 +19,7 @@
 
 #  Include the movie database, named movie_db
 from movies import movie_db
-from match import match
+from match import match #importing function from seperate file (match.py)
 from typing import List, Tuple, Callable, Any
 
 # The projection functions, that give us access to certain parts of a "movie" (a tuple)
@@ -43,6 +43,7 @@ def get_actors(movie: Tuple[str, str, int, List[str]]) -> List[str]:
 # according to the action and the argument. It is important that each function returns a
 # list of the answer(s) and not just the answer itself.
 
+#Mr. 10 years old the year Malcom X came out
 
 def title_by_year(matches: List[str]) -> List[str]:
     """Finds all movies made in the passed in year
@@ -54,7 +55,12 @@ def title_by_year(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles made in the passed in year
     """
-    pass
+    year = int(matches[0])
+    result = []
+    for movie in movie_db:
+        if get_year(movie) == year:
+            result.append(get_title(movie))
+    return result
 
 
 def title_by_year_range(matches: List[str]) -> List[str]:
