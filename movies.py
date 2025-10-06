@@ -435,4 +435,15 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
             "spike lee",
         ],
     ),
+    (
+        "howl's moving castle",
+        "Hayao Miyazaki",
+        2004,
+        [
+            "takuya kimura",
+            "tatsuya gashûin",
+            "chieko baishô",
+            "akihiro miwa",
+        ],
+    ),
 ]

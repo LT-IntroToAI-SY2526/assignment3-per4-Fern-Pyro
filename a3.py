@@ -267,6 +267,7 @@ def search_pa_list(src: List[str]) -> List[str]:
         if mat is not None:
             answer = act(mat)
             return answer if answer else ["Sorry, no answers were found."]
+    return["I don't understand"]
 
 # act is a variable storing a function (the action function)
 # mat is a variable storing the result of match
@@ -311,7 +312,7 @@ if __name__ == "__main__":
     ), "failed title_before_year test"
     assert isinstance(title_after_year(["1990"]), list), "title_after_year not returning a list"
     assert sorted(title_after_year(["1990"])) == sorted(
-        ["boyz n the hood", "dead again", "the crying game", "flirting", "malcolm x"]
+        ["boyz n the hood", "dead again", "the crying game", "flirting", "malcolm x", "howl's moving castle",]
     ), "failed title_after_year test"
     assert isinstance(director_by_title(["jaws"]), list), "director_by_title not returning a list"
     assert sorted(director_by_title(["jaws"])) == sorted(
@@ -345,9 +346,9 @@ if __name__ == "__main__":
        ["the cotton club", "the godfather"]
      ), "failed title_by_director test"
     
-    # assert sorted(search_pa_list(["hi", "there"])) == sorted(
-    #     ["I don't understand"]
-    # ), "failed search_pa_list test 1"
+    assert sorted(search_pa_list(["hi", "there"])) == sorted(
+        ["I don't understand"]
+    ), "failed search_pa_list test 1"
     assert sorted(search_pa_list(["who", "directed", "jaws"])) == sorted(
         ["steven spielberg"]
     ), "failed search_pa_list test 2"
