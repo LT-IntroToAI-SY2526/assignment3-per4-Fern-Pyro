@@ -209,7 +209,7 @@ def title_by_actor(matches: List[str]) -> List[str]:
     return result
 
 # my own action function (below) --> add a movie to the movie database (adjust asserst accordingly)
-def title_by_director(matches: List[str]) -> List[str]:
+def actors_by_director(matches: List[str]) -> List[str]:
     """Finds titles of all movies that the given director directed
 
     Args:
@@ -222,8 +222,8 @@ def title_by_director(matches: List[str]) -> List[str]:
     result = []
     for movie in movie_db:
         if get_director(movie) == director:
-            result.append(get_title(movie))
-            #print(result)
+            result.extend(get_actors(movie))
+            print(result)
     return result 
 
 # dummy argument is ignored and doesn't matter
@@ -246,6 +246,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("who acted in %"), actors_by_title),
     (str.split("when was % made"), year_by_title),
     (str.split("in what movies did % appear"), title_by_actor),
+    (str.split("what actors have appeared in % movies "), actors_by_director),
     (["bye"], bye_action),
 ] # Every Tuple: (pattern, action_function)
 
@@ -345,6 +346,23 @@ if __name__ == "__main__":
     assert sorted(title_by_director(["francis ford coppola"])) == sorted(
        ["the cotton club", "the godfather"]
      ), "failed title_by_director test"
+    assert isinstance(actors_by_director(["francis ford coppola"]), list), "actors_by_director not returning a list"
+    assert sorted(actors_by_director(["francis ford coppola"])) == sorted(
+       [
+           "marlon brando", 
+           "al pacino", 
+           "james caan", 
+           "robert duvall", 
+           "diane keaton"
+           "richard gere",
+            "gregory hines",
+            "diane lane",
+            "lonette mckee",
+            "bob hoskins",
+            "james remar",
+            "fred gwynne",
+       ]
+     ), "failed actors_by_director test"
     
     assert sorted(search_pa_list(["hi", "there"])) == sorted(
         ["I don't understand"]
