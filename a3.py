@@ -222,8 +222,9 @@ def actors_by_director(matches: List[str]) -> List[str]:
     result = []
     for movie in movie_db:
         if get_director(movie) == director:
-            result.extend(get_actors(movie))
-            print(result)
+            result = result + get_actors(movie)
+            #result.extend(get_actors(movie))
+            #print(result)
     return result 
 
 # dummy argument is ignored and doesn't matter
@@ -299,6 +300,7 @@ def query_loop() -> None:
 # query_loop()
 
 if __name__ == "__main__":
+    #query_loop()
     assert isinstance(title_by_year(["1974"]), list), "title_by_year not returning a list"
     assert sorted(title_by_year(["1974"])) == sorted(
         ["amarcord", "chinatown"]
@@ -346,21 +348,23 @@ if __name__ == "__main__":
     assert sorted(title_by_director(["francis ford coppola"])) == sorted(
        ["the cotton club", "the godfather"]
      ), "failed title_by_director test"
-    assert isinstance(actors_by_director(["francis ford coppola"]), list), "actors_by_director not returning a list"
-    assert sorted(actors_by_director(["francis ford coppola"])) == sorted(
+    assert isinstance(actors_by_director(["orson welles"]), list), "actors_by_director not returning a list"
+    assert sorted(actors_by_director(["orson welles"])) == sorted(
        [
-           "marlon brando", 
-           "al pacino", 
-           "james caan", 
-           "robert duvall", 
-           "diane keaton"
-           "richard gere",
-            "gregory hines",
-            "diane lane",
-            "lonette mckee",
-            "bob hoskins",
-            "james remar",
-            "fred gwynne",
+           "orson welles",
+           "joseph cotten",
+           "dorothy comingore",
+           "ray collins",
+           "george coulouris",
+           "agnes moorehead",
+           "ruth warrick",
+           "orson welles",
+           "michael mac liammoir",
+           "robert coote",
+           "suzanne cloutier",
+           "faye compton",
+           "doris dowling",
+           "michael laurence",
        ]
      ), "failed actors_by_director test"
     
